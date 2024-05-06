@@ -27,7 +27,15 @@ const options = {
       } else {
         userSelectedDate = null;
         refs.startBtn.disabled = true;
-        window.alert('Please choose a date in the future');
+        iziToast.error({
+          timeout: false,
+          position: 'topRight',
+          message: 'Please choose a date in the future',
+          messageColor: '#fff',
+          backgroundColor: 'red',
+          close: false,
+          closeOnClick: true,
+        });
       }
     }
   },
@@ -93,8 +101,3 @@ function updateClockface({ days, hours, minutes, seconds }) {
   refs.minuteEl.textContent = minutes;
   refs.secondEl.textContent = seconds;
 }
-
-iziToast.show({
-  title: 'Hey',
-  message: 'What would you like to add?',
-});
