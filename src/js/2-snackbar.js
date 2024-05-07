@@ -5,13 +5,23 @@ const clickRejected = document.querySelector('.js-click-rej');
 
 form.addEventListener('submit', onFormSubmit);
 function onFormSubmit(event) {
-  console.log(event);
+  event.preventDefault();
+  const delay = input.valueAsNumber;
   const promise = new Promise((resolve, reject) => {
-    setTimeout(params => {}), inputText;
+    setTimeout(() => {
+      if (clickFulfilled.checked) {
+        resolve(delay);
+      } else if (clickRejected.checked) {
+        reject(delay);
+      }
+    }, delay);
+    console.log(promise);
   });
-  input.addEventListener('input', event => {
-    event.preventDefault();
-    const inputText = event.currentTarget.value;
-    console.log(inputText);
-  });
+  promise
+    .then(delay => {
+      console.log(`✅ Fulfilled promise in ${delay}ms`);
+    })
+    .catch(delay => console.log(`❌ Rejected promise in ${delay}ms`));
 }
+
+console.log('mango');
